@@ -1,0 +1,39 @@
+{
+   "name": "tenancysystem",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "jest",
+      "start": "ts-node src/index.ts"
+   },
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "apollo-server-express": "^3.1.2",
+      "bcryptjs": "^2.4.3",
+      "class-validator": "^0.13.1",
+      "express": "^4.17.1",
+      "faker": "^5.5.3",
+      "graphql": "^15.5.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "type-graphql": "^1.1.1",
+      "typedi": "^0.10.0",
+      "typeorm": "0.2.37"
+   },
+   "devDependencies": {
+      "@types/jest": "^27.0.1",
+      "@types/mocha": "^9.0.0",
+      "@types/node": "^12.12.7",
+      "cross-env": "^7.0.3",
+      "dotenv": "^10.0.0",
+      "eslint": "^7.32.0",
+      "jest": "^27.0.6",
+      "nodemon": "^2.0.12",
+      "pg": "^8.7.1",
+      "prettier": "^2.3.2",
+      "ts-node": "^8.4.1",
+      "typescript": "^3.7.2"
+   }
+}

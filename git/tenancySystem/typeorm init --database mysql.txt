@@ -1,0 +1,8 @@
+typeorm init --database mysql
+
+@@ -0,0 +1,5 @@
+git init
+git add
+git status
+git remote add origin https://github.com/khushbooGoyal0301/Tenancy-System.git
+git add .
