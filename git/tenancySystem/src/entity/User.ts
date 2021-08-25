@@ -1,53 +1,37 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-import { ObjectType, Field, ID } from "type-graphql";
+// import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-@ObjectType()
-@Entity()
-export class User extends BaseEntity {
-  @Field(() => ID)
-  @PrimaryGeneratedColumn()
-  id: number;
+// @Entity()
+// export class User {
 
-  @Field()
-  @Column()
-  name: string;
+//     @PrimaryGeneratedColumn()
+//     id: number;
 
-  @Field()
-  @Column("text", { unique: true })
-  email: string;
+//     @Column()
+//     firstName: string;
 
-  @Column()
-  password: string;
+//     @Column()
+//     lastName: string;
 
-  @Field()
-  @Column({ nullable: true, default: null })
-  workPlace?: string;
+//     @Column()
+//     age: number;
 
-  @Field()
-  @Column({ nullable: true, default: null })
-  about?: string;
+// }
 
-  @Field()
-  @Column({ nullable: true, default: null })
-  linkedIn?: string;
+import { Resolver, Query } from "type-graphql";
 
-  @Field()
-  @Column({ nullable: true, default: null })
-  github?: string;
-
-  @Field(() => [String])
-  @Column("simple-array", { nullable: true, default: null })
-  tags?: string[];
-
-  @Field()
-  @Column()
-  joinedDate: string;
-
-  @Field()
-  @Column({ nullable: true, default: null })
-  location?: string;
-
-  @Field()
-  @Column({ nullable: true, default: null })
-  isActive?: boolean;
+@Resolver()
+export class Hello {
+  @Query(() => String)
+  async hello() {
+    return "Hello World";
+  }
 }
+
+@Resolver()
+export class BookResolver {
+  @Query(() => String)
+  abcd() {
+    return "book resolver";
+  }
+}
+ 
