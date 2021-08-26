@@ -1,37 +1,22 @@
-// import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { ObjectType, Field, ID } from "type-graphql";
 
-// @Entity()
-// export class User {
+@ObjectType()
+@Entity()
+export class User extends BaseEntity {
+  @Field(() => ID)
+  @PrimaryGeneratedColumn()
+  id: number;
 
-//     @PrimaryGeneratedColumn()
-//     id: number;
+  @Field()
+  @Column()
+  name: string;
 
-//     @Column()
-//     firstName: string;
+  @Field()
+  @Column("text", { unique: true })
+  email: string;
 
-//     @Column()
-//     lastName: string;
+  @Column()
+  password: string;
 
-//     @Column()
-//     age: number;
-
-// }
-
-import { Resolver, Query } from "type-graphql";
-
-@Resolver()
-export class Hello {
-  @Query(() => String)
-  async hello() {
-    return "Hello World";
-  }
 }
-
-@Resolver()
-export class BookResolver {
-  @Query(() => String)
-  abcd() {
-    return "book resolver";
-  }
-}
- 
