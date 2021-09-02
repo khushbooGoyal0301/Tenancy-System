@@ -1,23 +1,8 @@
 import { Resolver, Query, Mutation, Arg} from "type-graphql";
-import { User } from "../entity/User";
-import bcrypt from "bcryptjs";
+import { User } from "../../../entity/User";
+//import bcrypt from "bcrypt";
+const bcrypt = require('bcryptjs');
 import { RegisterInputType } from "./RegisterInputType";
-
-// @Resolver()
-// export class Hello {
-//   @Query(() => String)
-//   async hello() {
-//     return "Hello World";
-//   }
-// }
-
-// @Resolver()
-// export class BookResolver {
-//   @Query(() => String)
-//   abcd() {
-//     return "book resolver";
-//   }
-// }
 
 @Resolver()
 export class RegisterResolver 
@@ -35,6 +20,17 @@ export class RegisterResolver
   @Query((returns) => [User])
   public async user(): Promise<User[]> {
       return await User.find();
+  }
+
+  @Mutation(() => User)
+  async register(
+    @Arg("data")
+    registerInput: RegisterInputType
+  ): Promise<User> {
+    const hashedPassword = await bcrypt.hash(registerInput.password, 10);
+    registerInput.password = hashedPassword;
+    const user = await User.create(registerInput).save();
+    return user;
   }
 
   // @Mutation(() => User)
@@ -56,17 +52,6 @@ export class RegisterResolver
   //   return user;
   // }
 
-  @Mutation(() => User)
-  async register(
-    @Arg("data")
-    registerInput: RegisterInputType
-  ): Promise<User> {
-    const hashedPassword = await bcrypt.hash(registerInput.password, 13);
-    registerInput.password = hashedPassword;
-    const user = await User.create(registerInput).save();
-    return user;
-  }
-
   // mutation {
   //   register(
   //     data:
@@ -83,4 +68,21 @@ export class RegisterResolver
   //        password    
   //     }
   // }
+
+  // @Resolver()
+    // export class Hello {
+    //   @Query(() => String)
+    //   async hello() {
+    //     return "Hello World";
+    //   }
+    // }
+
+    // @Resolver()
+    // export class BookResolver {
+    //   @Query(() => String)
+    //   abcd() {
+    //     return "book resolver";
+    //   }
+    // }
+
 }
